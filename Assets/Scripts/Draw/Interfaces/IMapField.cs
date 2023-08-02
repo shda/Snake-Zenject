@@ -1,6 +1,6 @@
 namespace Logic
 {
-    public interface IGameField
+    public interface IMapField
     {
         Point GetSize();
         bool IsIntersectionToBorder(Point headPoint);

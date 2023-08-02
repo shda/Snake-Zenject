@@ -14,7 +14,7 @@ namespace Draw
         
         private ObjectPool<Transform> _bodyPool;
         
-        private List<Transform> _bodySnake = new();
+        private readonly List<Transform> _bodyList = new();
         
         private void Awake()
         {
@@ -26,18 +26,18 @@ namespace Draw
             {
                 var body = Instantiate(bodyPrefab);
                 return body;
-            } , defaultCapacity: 20);
+            });
         }
         
         public void Draw(IEnumerable<BodyPart> body)
         {
-            foreach (var bodyTr in _bodySnake)
+            foreach (var bodyTr in _bodyList)
             {
                 bodyTr.gameObject.SetActive(false);
                 _bodyPool.Release(bodyTr);
             }
             
-            _bodySnake.Clear();
+            _bodyList.Clear();
             
             foreach (var bodyPart in body)
             {
@@ -49,7 +49,7 @@ namespace Draw
                         break;
                     case BodyType.Body:
                         bodyTr = _bodyPool.Get();
-                        _bodySnake.Add(bodyTr);
+                        _bodyList.Add(bodyTr);
                         break;
                     case BodyType.Tail:
                         bodyTr = tail;

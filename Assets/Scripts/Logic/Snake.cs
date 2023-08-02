@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Draw;
+using UnityEngine;
 
 namespace Logic
 {
@@ -9,20 +10,22 @@ namespace Logic
     {
         public Action OnAfterStep { get; set; }
         
-        private ISnakeDraw _snakeDraw;
-        private LinkedList<BodyPart> _snakeBody = new();
+        private readonly ISnakeDraw _snakeDraw;
+        private readonly LinkedList<BodyPart> _snakeBody = new();
 
-        private Point _moveDirection = new Point(1, 0);
+        private Point _moveDirection = new(1, 0);
         private bool _isMoving;
         private bool _isUpSize;
-
-        public Snake(ISnakeDraw snakeDraw , IStepSnakeTick stepSnakeTick)
+        
+        public Snake(
+            ISnakeDraw snakeDraw , 
+            IStepSnakeTick stepSnakeTick)
         {
             _snakeDraw = snakeDraw;
-            stepSnakeTick.StepSnake = StepSnake;
+            stepSnakeTick.StepSnake = MoveShake;
         }
 
-        private void StepSnake()
+        private void MoveShake()
         {
             if(!_isMoving)
                 return;

@@ -5,6 +5,15 @@ namespace Logic
 {
     public struct Point
     {
+        public int X { get; set;}
+        public int Y { get; set; }
+
+        public Point(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+        
         public override bool Equals(object obj)
         {
             return obj is Point other && Equals(other);
@@ -13,15 +22,6 @@ namespace Logic
         public override int GetHashCode()
         {
             return HashCode.Combine(X, Y);
-        }
-
-        public int X { get; set;}
-        public int Y { get; set; }
-
-        public Point(int x, int y)
-        {
-            X = x;
-            Y = y;
         }
         
         public static Point operator +(Point a, Point b) => new(a.X + b.X, a.Y + b.Y);

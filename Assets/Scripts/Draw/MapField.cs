@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Logic
 {
     [ExecuteInEditMode]
-    public class GameField : MonoBehaviour , IGameField
+    public class MapField : MonoBehaviour , IMapField
     {
-        [SerializeField] private Vector2Int mapSize = new Vector2Int(20, 20);
+        [SerializeField] private Vector2Int mapSize = new(20, 20);
         [SerializeField] private Transform gameFieldPrefab;
 
         private void Start()

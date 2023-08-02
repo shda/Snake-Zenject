@@ -1,4 +1,5 @@
 using System;
+using Settings;
 using UnityEngine;
 using Zenject;
 
@@ -8,17 +9,28 @@ namespace Logic
     {
         public Action StepSnake { get; set; }
 
-        private float _currentTime;
-        private readonly float _delayOneStep = 0.2f;
+        private float _currentTimer;
         
+        private readonly SnakeSettings _settings;
+
+        public StepSnakeTick(SnakeSettings settings)
+        {
+            _settings = settings;
+        }
+
         public void Tick()
         {
-            _currentTime -= Time.deltaTime;
-            if (_currentTime <= 0)
+            _currentTimer -= Time.deltaTime;
+            if (_currentTimer <= 0)
             {
-                _currentTime = _delayOneStep;
-                StepSnake?.Invoke();
+                _currentTimer = _settings.DelayBetweenSteps;
+                InvokeStep();
             }
+        }
+
+        public void InvokeStep()
+        {
+            StepSnake?.Invoke();
         }
     }
 }

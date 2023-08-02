@@ -9,21 +9,21 @@ namespace Logic
         private readonly IApple _apple;
         private readonly ISnake _snake;
         private readonly IUiDraw _uiDraw;
-        private readonly IGameField _gameField;
+        private readonly IMapField _mapField;
 
         private int _score;
 
         public GameController(
             IApple apple,
             ISnake snake,
-            IGameField gameField,
+            IMapField mapField,
             IInputSnake inputSnake ,
             IUiDraw uiDraw)
         {
             _apple = apple;
             _snake = snake;
             _uiDraw = uiDraw;
-            _gameField = gameField;
+            _mapField = mapField;
 
             _snake.OnAfterStep = OnSnakeAfterStep;
             inputSnake.OnChangeDirection = OnChangeDirection;
@@ -51,7 +51,7 @@ namespace Logic
         private bool InIntersectionToBorder()
         {
             var headPoint = _snake.GetPositionHead();
-            return _gameField.IsIntersectionToBorder(headPoint);
+            return _mapField.IsIntersectionToBorder(headPoint);
         }
 
         private void SnakeUpSize()
@@ -99,7 +99,7 @@ namespace Logic
             int x;
             int y;
 
-            var size = _gameField.GetSize();
+            var size = _mapField.GetSize();
             do
             {
                 x = Random.Range(1, size.X - 1);
