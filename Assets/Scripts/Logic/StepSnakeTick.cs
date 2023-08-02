@@ -9,7 +9,7 @@ namespace Logic
         public Action StepSnake { get; set; }
 
         private float _currentTime;
-        private float _delayOneStep = 0.1f;
+        private readonly float _delayOneStep = 0.2f;
         
         public void Tick()
         {

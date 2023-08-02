@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Draw;
@@ -6,11 +7,14 @@ namespace Logic
 {
     public class Snake : ISnake
     {
+        public Action OnAfterStep { get; set; }
+        
         private ISnakeDraw _snakeDraw;
         private LinkedList<BodyPart> _snakeBody = new();
 
         private Point _moveDirection = new Point(1, 0);
         private bool _isMoving;
+        private bool _isUpSize;
 
         public Snake(ISnakeDraw snakeDraw , IStepSnakeTick stepSnakeTick)
         {
@@ -20,21 +24,40 @@ namespace Logic
 
         private void StepSnake()
         {
+            if(!_isMoving)
+                return;
+            
             var headHead = _snakeBody.First(x => 
                 x.BodyType == BodyType.Head);
             
-            Point lastPart = headHead.PointToMap;
+            var lastPart = headHead.PointToMap;
             headHead.PointToMap += _moveDirection;
-            
-            foreach (var bodyPart in _snakeBody)
+
+            if (_isUpSize)
             {
-                if (bodyPart.BodyType != BodyType.Head)
+                _isUpSize = false;
+
+                var newPart = new BodyPart
                 {
-                    (bodyPart.PointToMap, lastPart) = (lastPart, bodyPart.PointToMap);
+                    BodyType = BodyType.Body,
+                    PointToMap = lastPart
+                };
+                
+                _snakeBody.AddAfter(_snakeBody.First , newPart);
+            }
+            else
+            {
+                foreach (var bodyPart in _snakeBody)
+                {
+                    if (bodyPart.BodyType != BodyType.Head)
+                    {
+                        (bodyPart.PointToMap, lastPart) = (lastPart, bodyPart.PointToMap);
+                    }
                 }
             }
-            
+
             _snakeDraw.Draw(_snakeBody);
+            OnAfterStep?.Invoke();
         }
 
         public void SetToStartPosition(Point headPoint, Point tailPoint)
@@ -48,9 +71,54 @@ namespace Logic
             }
         }
 
-        public void StartMove()
+        public bool IsIntersection(Point point)
+        {
+            foreach (var bodyPart in _snakeBody)
+            {
+                if (bodyPart.PointToMap == point)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void UpSize()
+        {
+            _isUpSize = true;
+        }
+
+        public bool IsIntersectionToBody()
+        {
+            foreach (var bodyPart in _snakeBody)
+            {
+                foreach (var bodyPartCheck in _snakeBody)
+                {
+                    if (bodyPart != bodyPartCheck &&
+                        bodyPart.PointToMap == bodyPartCheck.PointToMap)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public Point GetPositionHead()
+        {
+            return _snakeBody.First.Value.PointToMap;
+        }
+
+        public void StartMoving()
         {
             _isMoving = true;
+        }
+
+        public void StopMoving()
+        {
+            _isMoving = false;
         }
 
         public void ChangeMoveDirection(Direction direction)
