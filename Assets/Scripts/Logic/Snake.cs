@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Draw;
-using UnityEngine;
 
 namespace Logic
 {
     public class Snake : ISnake
     {
-        public Action OnAfterStep { get; set; }
+        public event Action OnAfterStep;
         
         private readonly ISnakeDraw _snakeDraw;
         private readonly LinkedList<BodyPart> _snakeBody = new();

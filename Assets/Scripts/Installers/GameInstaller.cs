@@ -1,7 +1,6 @@
 using Draw;
 using Logic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Installers
@@ -11,11 +10,9 @@ namespace Installers
         [SerializeField] private AppleDraw appleDraw;
         [SerializeField] private SnakeDraw snakeDraw;
         [SerializeField] private Ui ui;
-        [SerializeField] private MapField mapField;
 
         public override void InstallBindings()
         {
-            Container.Bind<IMapField>().FromInstance(mapField);
             Container.Bind<IUiDraw>().FromInstance(ui);
             
             Container.BindInterfacesAndSelfTo<InputSnake>().AsSingle();
@@ -23,8 +20,11 @@ namespace Installers
 
             Container.Bind<IApple>().To<Apple>().AsSingle().WithArguments(appleDraw);
             Container.Bind<ISnake>().To<Snake>().AsSingle().WithArguments(snakeDraw);
-
-            Container.BindInterfacesAndSelfTo<GameController>().AsSingle();
+            
+            
+            Container.BindInterfacesAndSelfTo<EatAppleHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MovingSnakeHandler>().AsSingle();
         }
     }
 }

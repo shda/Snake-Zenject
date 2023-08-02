@@ -1,8 +1,10 @@
 namespace Logic
 {
-    public interface IMapField
+    /*
+    public interface IMapDraw
     {
         Point GetSize();
         bool IsIntersectionToBorder(Point headPoint);
     }
+    */
 }

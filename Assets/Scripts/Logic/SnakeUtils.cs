@@ -72,5 +72,33 @@ namespace Logic
 
             return snake;
         }
+        
+        public static IEnumerable<Point> PointsBorder(Vector2Int mapSize)
+        {
+            for (var x = 0; x < mapSize.x; x++)
+            {
+                yield return new Point(x, 0);
+                yield return new Point(x, mapSize.y - 1);
+            }
+            
+            for (var y = 0; y < mapSize.y; y++)
+            {
+                yield return new Point(0, y);
+                yield return new Point(mapSize.x - 1, y);
+            }
+        }
+        
+        public static bool IsIntersectionToBorder(Point headPoint , Vector2Int mapSize)
+        {
+            foreach (var point in PointsBorder(mapSize))
+            {
+                if (headPoint == point)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

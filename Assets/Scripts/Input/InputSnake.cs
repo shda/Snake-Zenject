@@ -8,7 +8,7 @@ namespace Logic
     {
         public Action<Direction> OnChangeDirection { get; set; }
         
-        private KeyByAction[] _actions;
+        private readonly KeyByAction[] _actions;
         
         public InputSnake()
         {

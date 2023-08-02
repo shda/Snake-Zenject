@@ -5,7 +5,7 @@ namespace Logic
 {
     public interface ISnake
     {
-        Action OnAfterStep { get; set; }
+        event Action OnAfterStep;
         void StartMoving();
         void StopMoving();
         void ChangeMoveDirection(Direction direction);
