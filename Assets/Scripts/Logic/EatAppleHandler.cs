@@ -15,10 +15,10 @@ namespace Logic
         private int _score;
         
         public EatAppleHandler(
+            MapSettings mapSettings,
             ISnake snake,
             IApple apple,
-            IUiDraw uiDraw,
-            MapSettings mapSettings)
+            IUiDraw uiDraw)
         {
             _uiDraw = uiDraw;
             _apple = apple;
@@ -52,7 +52,7 @@ namespace Logic
         
         private bool IsIntersectionToApple()
         {
-            return _snake.IsIntersection(_apple.GetPosition());
+            return _snake.IsIntersection(_apple.Position);
         }
 
         private void SetAppleToNewPosition()
@@ -67,7 +67,7 @@ namespace Logic
                 y = Random.Range(1, size.y - 1);
             } while (_snake.IsIntersection(new Point(x, y)));
 
-            _apple.SetPosition(new Point(x, y));
+            _apple.Position = new Point(x, y);
         }
 
         public void Initialize()

@@ -2,7 +2,6 @@ namespace Logic
 {
     public interface IApple
     {
-        Point GetPosition();
-        void SetPosition(Point point);
+        Point Position { get; set; }
     }
 }

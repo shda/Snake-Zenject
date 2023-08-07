@@ -90,15 +90,8 @@ namespace Logic
         
         public static bool IsIntersectionToBorder(Point headPoint , Vector2Int mapSize)
         {
-            foreach (var point in PointsBorder(mapSize))
-            {
-                if (headPoint == point)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            var rect = Rect.MinMaxRect(1,1, mapSize.x , mapSize.y);
+            return !rect.Contains(new Vector2(headPoint.X, headPoint.Y));
         }
     }
 }

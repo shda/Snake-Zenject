@@ -10,7 +10,6 @@ namespace Logic
         void StopMoving();
         void ChangeMoveDirection(Direction direction);
         void SetToStartPosition(Point headPoint, Point tailPoint);
-
         bool IsIntersection(Point point);
         void UpSize();
         bool IsIntersectionToBody();
