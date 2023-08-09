@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Logic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Draw
 {
@@ -14,14 +15,14 @@ namespace Draw
             public Sprite spriteBody;
         }
 
-        [SerializeField] private SpriteRenderer renderer;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private DirectionToImage[] directionToImages;
 
         public void SetDirection(Direction direction)
         {
             var findSprite= directionToImages.
                 FirstOrDefault(x => x.bodyDirection == direction);
-            renderer.sprite = findSprite.spriteBody;
+            spriteRenderer.sprite = findSprite.spriteBody;
         }
     }
 }

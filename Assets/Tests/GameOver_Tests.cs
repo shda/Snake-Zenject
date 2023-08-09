@@ -34,11 +34,8 @@ public class GameOver_Tests
     {
         bool checkIsShowGameOver = false;
 
-        var mapSetting = new MapSettings
-        {
-            MapSize = mapSize
-        };
-        
+        var mapSetting = new MapSettings(mapSize);
+
         //Snake
         var mSnake = new Mock<ISnake>();
         mSnake.Setup(x => x.GetPositionHead()).Returns(new Point(pointHead.x, pointHead.y));

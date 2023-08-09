@@ -5347,8 +5347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc6181d08d50504090b6b9748d6a0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appleDraw: {fileID: 1718596318}
-  snakeDraw: {fileID: 1570806815}
   ui: {fileID: 858621553}
 --- !u!114 &735992588
 MonoBehaviour:
@@ -9038,6 +9036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1570806814}
   - component: {fileID: 1570806815}
+  - component: {fileID: 1570806816}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -9078,6 +9077,24 @@ MonoBehaviour:
   head: {fileID: 64049074}
   tail: {fileID: 945123482}
   bodyPrefab: {fileID: 590871596}
+--- !u!114 &1570806816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570806813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 1570806815}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 1
 --- !u!1 &1590875262
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,6 +9861,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1718596316}
   - component: {fileID: 1718596318}
+  - component: {fileID: 1718596319}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Untagged
@@ -9879,6 +9897,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe3adf639044c6da3ab5c9217243b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1718596319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718596314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 1718596318}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 1
 --- !u!1 &1727136952
 GameObject:
   m_ObjectHideFlags: 0
@@ -10729,6 +10765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1917284652}
   - component: {fileID: 1917284653}
+  - component: {fileID: 1917284654}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -10885,6 +10922,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameFieldPrefab: {fileID: 1608667847}
+--- !u!114 &1917284654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917284651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 1917284653}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 2
 --- !u!1 &1940983291
 GameObject:
   m_ObjectHideFlags: 0

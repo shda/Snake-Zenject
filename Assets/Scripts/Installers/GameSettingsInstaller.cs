@@ -1,6 +1,5 @@
 using Settings;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Installers

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Draw
 {
@@ -13,7 +14,7 @@ namespace Draw
             public Sprite spriteBody;
         }
 
-        [SerializeField] private SpriteRenderer renderer;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private DirectionToImage[] directionToImages;
         
         
@@ -21,7 +22,7 @@ namespace Draw
         {
            var body = directionToImages.
                FirstOrDefault(x => x.bodyDirection == bodyDirection);
-           renderer.sprite = body.spriteBody;
+           spriteRenderer.sprite = body.spriteBody;
         }
     }
 }
