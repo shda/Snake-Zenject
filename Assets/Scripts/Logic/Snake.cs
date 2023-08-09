@@ -64,7 +64,7 @@ namespace Logic
 
         public void SetToStartPosition(Point headPoint, Point tailPoint)
         {
-            var snake = SnakeUtils.MakeSnakeBodyParts(headPoint, tailPoint);
+            var snake = SnakeUtils.InitSnakeBodyParts(headPoint, tailPoint);
             _snakeDraw.Draw(snake);
 
             foreach (var bodyPart in snake)

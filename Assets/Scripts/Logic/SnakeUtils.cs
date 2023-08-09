@@ -18,7 +18,7 @@ namespace Logic
             };
         }
 
-        public static List<BodyPart> MakeSnakeBodyParts(Point headPoint, Point tailPoint)
+        public static List<BodyPart> InitSnakeBodyParts(Point headPoint, Point tailPoint)
         {
             List<BodyPart> snake = new()
             {
@@ -90,7 +90,7 @@ namespace Logic
         
         public static bool IsIntersectionToBorder(Point headPoint , Vector2Int mapSize)
         {
-            var rect = Rect.MinMaxRect(1,1, mapSize.x , mapSize.y);
+            var rect = Rect.MinMaxRect(1,1, mapSize.x - 1 , mapSize.y - 1);
             return !rect.Contains(new Vector2(headPoint.X, headPoint.Y));
         }
     }

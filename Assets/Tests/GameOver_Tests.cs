@@ -62,7 +62,7 @@ public class GameOver_Tests
     {
         var mapSize = new Vector2Int(10, 10);
         
-        Assert.IsFalse(CheckGameOverByIntersectionToBolder(mapSize, new Vector2Int(9,9)));
+        Assert.IsFalse(CheckGameOverByIntersectionToBolder(mapSize, new Vector2Int(8,8)));
         Assert.IsFalse(CheckGameOverByIntersectionToBolder(mapSize, new Vector2Int(5,5)));
         Assert.IsTrue(CheckGameOverByIntersectionToBolder(mapSize, new Vector2Int(20,20)));
         Assert.IsTrue(CheckGameOverByIntersectionToBolder(mapSize, new Vector2Int(0,0)));

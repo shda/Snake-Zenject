@@ -21,7 +21,7 @@ namespace Logic
 
         public void Initialize()
         {
-            _snake.SetToStartPosition(new Point(10 , 18), new Point(9, 18));
+            _snake.SetToStartPosition(new Point(10 , 18), new Point(6, 18));
             _snake.StartMoving();
         }
     }
