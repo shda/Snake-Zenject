@@ -64,13 +64,68 @@ namespace Logic
 
         public void SetToStartPosition(Point headPoint, Point tailPoint)
         {
-            var snake = SnakeUtils.InitSnakeBodyParts(headPoint, tailPoint);
+            var snake = InitSnakeBodyParts(headPoint, tailPoint);
             _snakeDraw.Draw(snake);
 
             foreach (var bodyPart in snake)
             {
                 _snakeBody.AddLast(bodyPart);
             }
+        }
+
+        private List<BodyPart> InitSnakeBodyParts(Point headPoint, Point tailPoint)
+        {
+            List<BodyPart> snake = new()
+            {
+                new BodyPart
+                {
+                    BodyType = BodyType.Head,
+                    PointToMap = headPoint,
+                }
+            };
+
+            var pointX = headPoint.X;
+            var pointY = headPoint.Y;
+
+            while (pointX != tailPoint.X ||
+                   pointY != tailPoint.Y)
+            {
+                if (pointX > tailPoint.X)
+                {
+                    pointX--;
+                }
+                else if (pointX < tailPoint.X)
+                {
+                    pointX++;
+                }
+
+                if (pointY > tailPoint.Y)
+                {
+                    pointX--;
+                }
+                else if (pointY < tailPoint.Y)
+                {
+                    pointX++;
+                }
+
+                if (pointX != tailPoint.X ||
+                    pointY != tailPoint.Y)
+                {
+                    snake.Add(new BodyPart()
+                    {
+                        BodyType = BodyType.Body,
+                        PointToMap = new Point(pointX, pointY)
+                    });
+                }
+            }
+
+            snake.Add(new BodyPart
+            {
+                BodyType = BodyType.Tail,
+                PointToMap = tailPoint
+            });
+
+            return snake;
         }
 
         public bool IsIntersection(Point point)
@@ -125,7 +180,7 @@ namespace Logic
 
         public void ChangeMoveDirection(Direction direction)
         {
-            var dirVector2d = SnakeUtils.DirectionToVector2d(direction);
+            var dirVector2d = direction.ToVector2d();
             _moveDirection = new Point(dirVector2d.x , dirVector2d.y) ;
         }
     }

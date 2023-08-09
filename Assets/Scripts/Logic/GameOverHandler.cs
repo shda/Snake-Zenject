@@ -1,5 +1,6 @@
 using Draw;
 using Settings;
+using UnityEngine;
 using Zenject;
 
 namespace Logic
@@ -45,7 +46,13 @@ namespace Logic
         private bool InIntersectionToBorder()
         {
             var headPoint = _snake.GetPositionHead();
-            return  SnakeUtils.IsIntersectionToBorder(headPoint, _mapSettings.MapSize);
+            return  IsIntersectionToBorder(headPoint, _mapSettings.MapSize);
+        }
+        
+        private static bool IsIntersectionToBorder(Point headPoint , Vector2Int mapSize)
+        {
+            var rect = Rect.MinMaxRect(1,1, mapSize.x - 1 , mapSize.y - 1);
+            return !rect.Contains(new Vector2(headPoint.X, headPoint.Y));
         }
 
         public void Initialize()
